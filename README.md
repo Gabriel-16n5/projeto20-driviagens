@@ -24,3 +24,13 @@ npm i joi bcrypt cors dayjs dotenv express http-status nanoid pg uuid
 conferir se a node_modules e o .env estão marcados para não serem comitados no .gitignore
 Criar um .env.exemple para facilitar o modelo.
 
+adcionar o:
+    "type": "module"
+no package.jason entre o name e a version para o correto funcionamento de algumas dependências
+
+Configurar o app.js com a porta que irá usar e deixar dinamico caso suba em servidor de terceiro.
+adcionar o script: 
+    "start": "node ./src/app.js"
+no package.json para iniciar o servidor com as configurações feitas no app.js
+E também adicionar o script do nodemon para desenvolvimento:
+    "dev": "npx nodemon src/app.js"
