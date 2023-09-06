@@ -26,7 +26,7 @@ Criar um .env.exemple para facilitar o modelo.
 
 adcionar o:
     "type": "module"
-no package.jason entre o name e a version para o correto funcionamento de algumas dependências
+no package.json entre o name e a version para o correto funcionamento de algumas dependências
 
 Configurar o app.js com a porta que irá usar e deixar dinamico caso suba em servidor de terceiro.
 adcionar o script: 
