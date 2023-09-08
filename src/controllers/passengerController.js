@@ -2,10 +2,8 @@ import httpStatus from "http-status";
 import passegersService from "../services/passenger.service.js";
 
 async function getPassengerTravel(req, res) {
-    const { body } = req;
-    const { firstName, lastName } = body;
-    const passenger = passegersService.getPasseger(firstName, lastName);
-    res.send(passenger);
+    const passenger = await passegersService.getPasseger();
+    res.send(passenger.rows);
   }
 
 async function passengerData(req, res) {

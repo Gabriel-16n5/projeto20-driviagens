@@ -19,7 +19,7 @@ entre outras...
 
 agora instalar as dependências necessárias, isso pode variar, mas segue algumas:
 npm i -D nodemon
-npm i joi bcrypt cors dayjs dotenv express http-status nanoid pg uuid
+npm i joi @joi/date bcrypt cors dayjs dotenv express http-status nanoid pg uuid
 
 conferir se a node_modules e o .env estão marcados para não serem comitados no .gitignore
 Criar um .env.exemple para facilitar o modelo.
