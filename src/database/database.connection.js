@@ -7,5 +7,5 @@ export const connection = new Pool({
   connectionString: process.env.DATABASE_URL
 });
 
-if (process.env.MODE === "prod") configDataBase.ssl = true;
+if (process.env.MODE === "prod") connection.ssl = true;
 console.log("conexão com banco estabelecida");
