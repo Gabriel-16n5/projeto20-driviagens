@@ -20,5 +20,5 @@ async function createPassenger(firstName, lastName) {
 
 export const passegersRepository = {
     getPasseger,
-    createPassenger
+    createPassenger,
 }
