@@ -3,7 +3,6 @@ import { conflictError } from "../errors/conflict.error.js"
 
 async function createCity(name) {
     const existingCitie = await citiesRepository.getCities(name);
-    console.log(existingCitie.rowCount)
     if (existingCitie.rowCount > 0) throw conflictError("cidade");
     return citiesRepository.createCity(name)
 }
