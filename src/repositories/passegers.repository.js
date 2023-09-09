@@ -1,10 +1,11 @@
 import {connection} from "../database/database.connection.js"
 
-async function getPasseger(firstName, lastName) {
-    return connection.query(
+async function getPasseger(city) {
+    return await connection.query(
         `
         SELECT * FROM passengers
-        `
+            WHERE LOWER("firstName") LIKE '%'||$1||'%' OR LOWER("lastName") LIKE '%'||$1||'%'
+        `, [city]
     );
 }
 
