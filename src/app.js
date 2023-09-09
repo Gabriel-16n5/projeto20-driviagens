@@ -1,9 +1,9 @@
+import express, { json } from "express";
+import "express-async-errors";
 import cors from 'cors';
 import dotenv from 'dotenv';
 import httpStatus from 'http-status';
 import router from "./routes/index.routes.js"
-import express, { json } from "express";
-import "express-async-errors";
 import errorHandler from "./middlewares/errorHandler.js"
 dotenv.config();
 
