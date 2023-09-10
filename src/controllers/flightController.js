@@ -15,7 +15,6 @@ async function createFlight(req, res) {
     const { body } = req;
     const { origin, destination, date } = body;
     if (!origin || !destination || !date) throw incompleteDataError();
-    if (origin === undefined || destination === null|| !date) throw incompleteDataError();
     const dateNow = dayjs().format("DD-MM-YYYY")
     if (compareDates(date, dateNow)) throw unprocessableEntityError("A data do voo deve ser maior do que a data atual")
     if (origin === destination) throw conflictError("origem e destino iguais")
