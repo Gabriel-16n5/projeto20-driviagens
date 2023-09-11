@@ -9,7 +9,7 @@ async function getFlightOrigin(origin) {
         `,
         [origin]
     );
-    // console.log(originId.rows[0])
+    if(originId.rowCount === 0) throw notFoundError("cidade")
     const flights = await connection.query(
         `
         SELECT * FROM flights
@@ -47,6 +47,7 @@ async function getFlightOriginDestination(destination) {
         `,
         [destination]
     );
+    if(destinationId.rowCount === 0) throw notFoundError("cidade")
     const flights = await connection.query(
         `
         SELECT * FROM flights
