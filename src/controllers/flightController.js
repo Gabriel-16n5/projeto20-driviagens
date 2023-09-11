@@ -7,8 +7,21 @@ import compareDates from "../utils/dateCompare.js";
 import { unprocessableEntityError } from "../errors/unprocessableEntity.error.js";
 
 async function getFlight(req, res) {
-    const flights = await flightService.getFlights();
-    res.send(flights.rows);
+    if(req.query.origin){
+        const originString = req.query.origin;
+        const flights = await flightService.getFlightsOrigin(originString);
+        res.send(flights);
+    }
+    if(req.query.destination){
+        const destinationtring = req.query.destination;
+        const flights = await flightService.getFlightOriginDestination(destinationtring);
+        res.send(flights);
+    }
+    // const originString = req.query.origin;
+    // const destinationString = req.query.destination;
+    // const origin = originString.toLowerCase();
+    // const flights = await flightService.getFlights(originString);
+    // res.send(flights.rows);
 }
 
 async function createFlight(req, res) {
