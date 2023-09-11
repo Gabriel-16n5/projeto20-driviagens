@@ -1,7 +1,7 @@
 import { passegersRepository } from "../repositories/passegers.repository.js";
 
-async function getPasseger(city) {
-    const result = await passegersRepository.getPasseger(city);
+async function getPasseger(passengerName) {
+    const result = await passegersRepository.getPasseger(passengerName);
     return result;
 }
 

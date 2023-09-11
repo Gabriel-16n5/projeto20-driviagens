@@ -1,13 +1,14 @@
 import {connection} from "../database/database.connection.js"
+import { notFoundError } from "../errors/notFound.error.js";
 
-async function getPasseger(city) {
+async function getPasseger(passengerName) {
     const result = await connection.query(
         `
         SELECT * FROM passengers
             WHERE LOWER("firstName") LIKE '%'||$1||'%' OR LOWER("lastName") LIKE '%'||$1||'%'
-        `, [city]
+        `, [passengerName]
     );
-    const a = 1
+    if(result.rowCount === 0) throw notFoundError("Nome do passageiro");
     const travels = await connection.query(
         `
         SELECT * FROM travels

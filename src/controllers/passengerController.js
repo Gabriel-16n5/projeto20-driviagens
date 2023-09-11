@@ -1,10 +1,12 @@
 import httpStatus from "http-status";
 import passegersService from "../services/passenger.service.js";
+import { notFoundError } from "../errors/notFound.error.js";
 
 async function getPassengerTravel(req, res) {
-    const cityString = req.query.name;
-    const city = cityString.toLowerCase();
-    const passenger = await passegersService.getPasseger(city);
+    const passengerString = req.query.name;
+    if(!passengerString) throw notFoundError("Nome do passageiro");
+    const passengerName = passengerString.toLowerCase();
+    const passenger = await passegersService.getPasseger(passengerName);
     res.send(passenger);
   }
 
