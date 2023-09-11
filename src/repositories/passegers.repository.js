@@ -24,12 +24,15 @@ async function getPasseger(passengerName) {
 }
 
 async function createPassenger(firstName, lastName) {
-    return connection.query(
+    console.log("entrou para criar")
+     const createPassenger = await connection.query(
         `
         INSERT INTO passengers ("firstName", "lastName") VALUES ($1, $2)
         `,
         [firstName, lastName]
     );
+        console.log("criou")
+    return createPassenger;
 }
 
 export const passegersRepository = {
