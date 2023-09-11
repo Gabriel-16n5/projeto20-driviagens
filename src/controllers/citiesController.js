@@ -6,7 +6,8 @@ async function createCity(req, res) {
     const { body } = req;
     const { name } = body;
     if (!name) throw incompleteDataError();
-    await citiesService.createCity(name)
+    const nameString = name.toLowerCase()
+    await citiesService.createCity(nameString)
     res.sendStatus(httpStatus.CREATED);
 }
 

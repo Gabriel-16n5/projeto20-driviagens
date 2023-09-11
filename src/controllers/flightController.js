@@ -9,12 +9,14 @@ import { unprocessableEntityError } from "../errors/unprocessableEntity.error.js
 async function getFlight(req, res) {
     if(req.query.origin){
         const originString = req.query.origin;
-        const flights = await flightService.getFlightsOrigin(originString);
+        const origin = originString.toLowerCase();
+        const flights = await flightService.getFlightsOrigin(origin);
         res.send(flights);
     }
     if(req.query.destination){
         const destinationtring = req.query.destination;
-        const flights = await flightService.getFlightOriginDestination(destinationtring);
+        const destination = destinationtring.toLowerCase();
+        const flights = await flightService.getFlightOriginDestination(destination);
         res.send(flights);
     }
     // const originString = req.query.origin;
