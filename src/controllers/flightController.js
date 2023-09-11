@@ -34,8 +34,14 @@ async function createFlight(req, res) {
     const dateNow = dayjs().format("DD-MM-YYYY")
     if (compareDates(date, dateNow)) throw unprocessableEntityError("A data do voo deve ser maior do que a data atual")
     if (origin === destination) throw conflictError("origem e destino iguais")
-    flightService.createFlight(origin, destination, date)
-    res.sendStatus(httpStatus.CREATED);
+    const existDestination = await flightService.verifyDestination(destination)
+    if(existDestination.rowCount === 0) throw notFoundError("Destino");
+    const existOrigin = await flightService.verifyOrigin(origin)
+    if(existOrigin.rowCount === 0) throw notFoundError("Origin");
+    const done = await flightService.createFlight(origin, destination, date)
+    if(done) res.sendStatus(httpStatus.CREATED);
+    else throw incompleteDataError()
+    
 }
 
 const flightController = {

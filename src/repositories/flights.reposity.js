@@ -1,4 +1,5 @@
 import {connection} from "../database/database.connection.js"
+import { notFoundError } from "../errors/notFound.error.js";
 
 async function getFlightOrigin(origin) {
     const originId = await connection.query(
@@ -55,18 +56,44 @@ async function getFlightOriginDestination(destination) {
     );
     return flights.rows
 }
+async function verifyDestination(destination) {
+    const destinationExists = await connection.query(
+        `
+        SELECT * FROM cities
+            WHERE id = $1
+        `,
+        [destination]
+    );
+    return destinationExists
+}
+
+async function verifyOrigin(origin) {
+    const originExists = await connection.query(
+        `
+        SELECT * FROM cities
+            WHERE id = $1
+        `,
+        [origin]
+    );
+    return originExists
+}
 
 async function registerFlight(origin, destination, date) {
-    return connection.query(
+
+    const flight = await connection.query(
         `
         INSERT INTO flights ("origin", "destination", "date") VALUES ($1, $2, $3)
         `,
         [origin, destination, date]
     );
+
+    return flight
 }
 
 export const flightsRepository = {
     getFlightOrigin,
     registerFlight,
-    getFlightOriginDestination
+    getFlightOriginDestination,
+    verifyDestination,
+    verifyOrigin
 }
