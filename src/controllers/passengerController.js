@@ -5,7 +5,7 @@ async function getPassengerTravel(req, res) {
     const cityString = req.query.name;
     const city = cityString.toLowerCase();
     const passenger = await passegersService.getPasseger(city);
-    res.send(passenger.rows);
+    res.send(passenger);
   }
 
 async function passengerData(req, res) {
