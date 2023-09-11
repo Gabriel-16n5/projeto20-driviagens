@@ -24,6 +24,7 @@ async function getFlight(req, res) {
     // const origin = originString.toLowerCase();
     // const flights = await flightService.getFlights(originString);
     // res.send(flights.rows);
+    res.sendStatus(httpStatus.NOT_FOUND)
 }
 
 async function createFlight(req, res) {
